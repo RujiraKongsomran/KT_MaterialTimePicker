@@ -2,10 +2,12 @@ package com.rujirakongsomran.kt_materialtimepicker
 
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.rujirakongsomran.kt_materialtimepicker.databinding.FragmentFirstBinding
@@ -40,6 +42,22 @@ class FirstFragment : Fragment() {
             .setTitleText("Set Alarm")
             .build()
         picker.show(childFragmentManager, "TAG")
+
+        picker.addOnPositiveButtonClickListener {
+            Log.d("FirstFragment", "POSITIVE")
+            val h = picker.hour
+            val min = picker.minute
+            Log.d("FirstFragment", "$h:$min")
+        }
+        picker.addOnNegativeButtonClickListener {
+            Log.d("FirstFragment", "NEGATIVE")
+        }
+        picker.addOnCancelListener {
+            Log.d("FirstFragment", "CANCEL")
+        }
+        picker.addOnDismissListener {
+            Log.d("FirstFragment", "DISMISS")
+        }
     }
 
     override fun onDestroyView() {
